@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Sign Up, Doing The Right Thing, At The Right Time">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="Sign-Up.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 3.0.9, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    
+      <%= stylesheet_link_tag "Sign-Up.css" %>
+    <%= stylesheet_link_tag "nicepage.css" %>
+    
+    
+    
+    <script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+}</script>
+    <meta property="og:title" content="Sign Up">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#478ac9">
+    <link rel="canonical" href="index.html">
+    <meta property="og:url" content="index.html">
+  </head>
+  <body class="u-body">
+
+    <!-- Header starts -->
+    <header class="u-clearfix u-header u-header" id="sec-2749">
+      <div class="u-clearfix u-sheet ">
+         <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item">
+                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
+              </li>
+
+              <li class="u-nav-item">
+                 <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+                  
+              </li>
+
+              <%
+                if !user_signed_in?
+              %>
+
+               <li class="u-nav-item">
+                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+
+              <%
+                else
+              %>
+
+              <li class="u-nav-item">
+                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <% end %>
+
+            </ul>
+          </div>
+          </div>
+    </header>
+    <!-- Header ends -->
+
+    <section class="u-align-center u-clearfix u-section-1" id="sec-c0d2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1>Sign Up</h1>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+          <p>New here? Sign up to connect with us.</p>
+        </div>
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-2"></div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-size-30">
+                <div class="u-layout-col">
+                  <div class="u-align-left u-container-style u-image u-layout-cell u-right-cell u-size-60 u-image-1">
+                    <div class="u-container-layout"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-size-30">
+                <div class="u-layout-row">
+                  <div class="u-container-style u-layout-cell u-left-cell u-size-60 u-white u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-2">
+                      <h1 class="u-text u-text-3">Doing The Right Thing, At The Right Time</h1>
+                      <p class="u-text u-text-4">Already signed up, click here for 
+                       <%= link_to 'Sign In', new_user_session_path, class: "u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1"%>
+                      </p>
+                      <div class="u-expanded-width u-form u-form-1">
+                        <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0;" source="custom" name="form">
+                          <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-1">
+                            <label for="name-d70e" class="u-form-control-hidden u-label"> <%= f.label :firstname %></label>
+                            <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" , placeholder: 'Firstname', class: "u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white"%>
+                          </div>
+
+                          <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-1">
+                            <label for="name-d70e" class="u-form-control-hidden u-label">  <%= f.label :lastname %></label>
+                          <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname" , placeholder: 'Lastname', class: "u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white"%>
+                          </div>
+
+                          <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-2">
+                            <label for="email-d70e" class="u-form-control-hidden u-label"><%= f.label :email %></label>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email" , placeholder: 'Email', class: "u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white"%>
+                          </div>
+                          <div class="u-form-group u-form-group-3">
+                            <label for="text-1350" class="u-form-control-hidden u-label"> <%= f.label :password %>
+           <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+           <% end %></label>
+                           <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password' , class: "u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white"%>
+                          </div>
+                          <div class="u-form-group u-form-group-4">
+                            <label for="text-3e2c" class="u-form-control-hidden u-label"><%= f.label :password_confirmation %></label>
+                           <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: 'Confirm Password', class: "u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white"%>
+                          </div>
+                          <div class="u-form-group u-form-group-5">
+                            <label for="text-baf4" class="u-form-control-hidden u-label"></label>
+                            <input type="text" placeholder="Address 1" id="text-baf4" name="text-2" class="u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white">
+                          </div>
+                          <div class="u-form-group u-form-group-6">
+                            <label for="text-064e" class="u-form-control-hidden u-label"></label>
+                            <input type="text" placeholder="Address 2" id="text-064e" name="text-3" class="u-border-1 u-border-palette-5-base u-input u-input-rectangle u-white">
+                          </div>
+                         
+                         
+                          <div class="u-align-left u-form-group u-form-submit u-form-group-9">
+                             <%= f.submit "Sign up", class: 'u-btn u-btn-submit u-button-style u-palette-5-base u-btn-2' %> 
+                            <input type="submit" value="submit" class="u-form-control-hidden">
+                          </div>
+                          <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                          <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                          <input type="hidden" value="" name="recaptchaResponse">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
+    </section>
+    <section class="u-clearfix u-section-2" id="carousel_e306">
+      <div class="u-clearfix u-sheet u-sheet-1"></div>
+    </section>
+    
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-16ab"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/css-templates" target="_blank">
+        <span>CSS Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/" target="_blank">
+        <span>Website Design Software</span>
+      </a>. 
+    </section>
+  </body>
+</html>

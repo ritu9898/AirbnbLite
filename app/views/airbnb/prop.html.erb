@@ -1,0 +1,18 @@
+<h1>Properties</h1>
+<script
+src="https://code.jquery.com/jquery-3.5.1.js"
+integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ crossorigin="anonymous"></script>
+ 
+<%= javascript_pack_tag 'prop' %>
+<% if user_signed_in? %>
+
+	<% if current_user.present?
+		
+		 %>
+	<h2>HOSTTTTT</h2>
+	<% end %>
+
+<%= link_to 'Add', 'new_registration_path' %>
+
+<% end %>

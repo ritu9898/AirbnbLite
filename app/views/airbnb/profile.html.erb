@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Profile</title>
+	<%= stylesheet_link_tag "nicepage.css" %>
+</head>
+<body>
+	
+	  <!-- Header starts -->
+
+    <header class="u-clearfix u-header u-header" id="sec-2749">
+      <div class="u-clearfix u-sheet ">
+         <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+
+              
+
+              <li class="u-nav-item">
+                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
+              </li>
+
+              <li class="u-nav-item">
+                 <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+                  
+              </li>
+
+              <%
+                if !user_signed_in?
+              %>
+
+               <li class="u-nav-item">
+                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+
+              <%
+                else
+              %>
+
+              <li class="u-nav-item">
+                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <% end %>
+
+            </ul>
+          </div>
+          </div>
+    </header>
+    <!-- Header ends -->
+
+	<div class="container back">
+		<p class="h2">My Profile page</p>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h5>FirstName</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.firstname %>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>LastName</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.lastname %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>Email</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.email %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>isHost?</h5>
+			</div>
+			<div class="col-md-4">
+				<% if current_user.host? %>
+					<p>Host</p>
+				<% else %>
+					<p>Tenant</p>
+				<% end %>
+			</div>
+		</div>
+
+			<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Favourites", favourites_path , class: "text-primary"%>
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Change Password", edit_user_password_path(current_user), class: "text-primary"%>
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Delete my account", registration_path(current_user), class: "text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+

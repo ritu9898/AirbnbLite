@@ -1,0 +1,28 @@
+<% if current_user %>
+  
+    <div class="container">
+      <h4>Add Sub Category</h4>
+
+      <p>Select main category first</p>
+     
+
+      	<%= form_with(model: @sub_category, id: "new-subcategory", local: false) do |form| %>
+  			<!-- <button class="cat">Click</button> -->
+
+         <%= form.label :category_id %>
+           <%= collection_select(:sub_category, :category_id, Category.all, :id, :name, id: "maincat") %> 
+
+
+  			 <%= form.label :name %> 
+  			 <%= form.text_field :name, placeholder: 'Sub-Category Name', id: "subcategory" %>
+  			 <!-- Add status button on/off -->
+         <!-- <%= @sub_category.category_id %> -->
+  			 <%= form.submit 'Add', class: 'btn btn-primary', id: 'subcat' %>
+         
+
+		     <% end %>  <!-- Form Ends -->
+    </div>
+
+<% else %>
+  <%= render file: 'public/404' %>
+<% end %>

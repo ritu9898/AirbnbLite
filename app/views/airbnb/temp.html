@@ -1,0 +1,122 @@
+<!-- index page -->
+
+<link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="Home.css" media="screen">
+
+<!-- home page -->
+
+ <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="Home.css" media="screen">
+
+<!-- button in home and index page -->
+
+<div class="u-container-layout">
+                  <a href="https://nicepage.com/templates" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Button</a>
+                </div>
+
+
+<!-- Nav bar -->
+
+       <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Properties.html" style="padding: 10px 20px;">Properties</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" style="padding: 10px 20px;">Connect</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Sign-Up.html">Sign Up</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-white" href="Sign-In.html">Sign In</a>
+</li></ul>
+</div>
+</li></ul>
+          </div>
+
+
+          <!-- header starts -->
+
+
+          <header class="u-clearfix u-header u-header" id="sec-2749"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1">
+          <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</symbol>
+</defs></svg>
+            </a>
+          </div>
+   
+          <!-- nav bar starts -->
+          <div>
+            <ul>
+              <li>Home</li>
+              <li>About</li>
+              <li>Properties</li>
+              <li>Connect</li>
+            </ul>
+          </div>
+          <!-- nav bar ends -->
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html" style="padding: 10px 20px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Properties.html" style="padding: 10px 20px;">Properties</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 10px 20px;">Connect</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Sign-Up.html">Sign Up</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Sign-In.html">Sign In</a>
+</li></ul>
+</div>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+
+      <!-- routes.rb after :users, -->
+
+       :controllers => {registrations : 'registrations'}
+
+       <!-- FirstName in sign_up form -->
+
+       <div class="field">
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname, autofocus: true%>
+  </div>
+
+<!-- Last Name in sign_up -->
+
+   <div class="field">
+    <%= f.label :lastname %><br />
+    <%= f.lastname_field :lastname, autofocus: true, autocomplete: "lastname" %>
+  </div>
+
+  <!-- Connect(Logout) -->
+
+  <%
+                if user_signed_in?
+              %>
+
+              <li><%= link_to 'Connect', new_user_registration_path %></li>
+
+              <%
+                else
+              %>
+
+              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+
+              <% end %>
+
+              <!-- Property IMage -->
+              <% if @property.image.attached?  %>
+      <p>
+        <%= image_tag @property.image %>
+        <image src="<%= (url_for(@property.image))%>" />
+      </p>
+    <% end %>
+
+    <!-- DropDown for properties -->
+
+     <%= grouped_collection_select(:property, :sub_category_id, @categories, :sub_categories, :name, :id, :name)%>

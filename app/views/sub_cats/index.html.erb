@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sub Cats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cat</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sub_cats.each do |sub_cat| %>
+      <tr>
+        <td><%= sub_cat.cat_id %></td>
+        <td><%= sub_cat.name %></td>
+        <td><%= sub_cat.status %></td>
+        <td><%= link_to 'Show', sub_cat %></td>
+        <td><%= link_to 'Edit', edit_sub_cat_path(sub_cat) %></td>
+        <td><%= link_to 'Destroy', sub_cat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sub Cat', new_sub_cat_path %>

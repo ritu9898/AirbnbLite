@@ -1,0 +1,23 @@
+<% if current_user %>
+  
+    <div class="container">
+      <h4>Add Category</h4>
+
+
+
+      	<%= form_with(model: @category, id: "new-category", local: false) do |form| %>
+  			<!-- <button class="cat">Click</button> -->
+
+  			 <%= form.label :name %> 
+  			 <%= form.text_field :name, placeholder: 'Category Name', id: "category" %>
+  			 <!-- Add status button on/off -->
+         
+  			 <%= form.submit 'Add', class: 'btn btn-primary', id: 'cat' %>
+         
+
+		     <% end %>  <!-- Form Ends -->
+    </div>
+
+<% else %>
+  <%= render file: 'public/404' %>
+<% end %>

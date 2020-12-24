@@ -1,0 +1,129 @@
+<div id="container">
+<% @properties.each do |p| %>
+  <div class="container-fluid con-properties">
+    <div class="row">
+      <div class="col-md-6" style="padding-left: 5vw;">
+        <p class="h3 center"><%= p.name %></p>
+        <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Location:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= p.location %></p>
+            </div> 
+        </div>
+
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Cost:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= p.cost %></p>
+            </div> 
+        </div>
+      
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">People:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= p.people %></p>
+            </div> 
+        </div>
+      
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Description:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= p.description %></p>
+            </div> 
+        </div>
+
+        <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Email:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= p.user&.email %></p>
+            </div> 
+        </div>  
+
+        <div class="row">
+          <div class="col-sm-3">
+             <p><%= link_to "Show", property_path(p) %></p>
+          </div>
+          <div class="col-sm-3">
+             <p><%= link_to "Edit", edit_property_path(p) %></p>
+          </div>
+          
+            <div class="col-sm-3">
+             <p></p>
+             <% if Favourite.exists?(user_id: current_user.id, property_id: p.id) %>
+              <span>
+                <i class="fa fa-heart color_red" id="fav" style="color: red;"value="<%= p.id %>" ></i>
+              </span>
+              <% else %>
+               <span>
+                <i class="fa fa-heart" id="fav" style="color: black;" value="<%= p.id %>"></i>
+              </span> 
+              <% end %>
+            
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-sm-6">
+             <h4> By, <%= p.user&.firstname %></h4>
+          </div>
+
+          <div class="col-sm-6">
+            <button>Book</button>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6">  <!-- Carousel Col Starts -->
+
+      <!-- Another Carousel Starts-->
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag(p.image, class: 'd-block w-50 h-50') if p.image.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(p.image1, class: 'd-block w-50 h-50') if p.image1.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(p.image2, class: 'd-block w-50 h-50') if p.image2.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(p.image3, class: 'd-block w-50 h-50') if p.image3.attached?%>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      </div>
+      <!-- Ends -->
+    </div>  <!-- Carousel Col Ends -->
+
+    </div>  <!-- //Main Row Ends -->
+
+  </div>
+  <hr />
+<% end %>
+</div>

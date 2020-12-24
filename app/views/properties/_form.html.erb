@@ -1,0 +1,136 @@
+
+
+<%= form_for @property, :html => {"data-parsley-validate" => 'parsley'} do |p|  %>
+
+ <% if @property.errors.any? %>
+     
+    <ul>
+    <% @property.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<div class="form-group">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <%= p.label :name %> 
+        </div>
+        <div class="col-sm-4">
+            <%= p.text_field :name, placeholder: 'Property/Owner Name', :required => true, data:{'parsley-required-message':'Name is required'}%>
+        </div>
+        
+   
+        <div class="col-sm-2">
+            <%= p.label :location %> 
+        </div>
+        <div class="col-sm-4">
+            <%= p.text_field :location, placeholder: 'Location', required:  :true, data:{'parsley-required-message':'Location is required'} %>
+        </div>
+        
+    </div>
+
+    </div>
+   
+</div><br />
+
+<div class="form-group">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <%= p.label :cost %> 
+        </div>
+        <div class="col-sm-4">
+            <%= p.number_field :cost, placeholder: 'Cost', :required => true %>
+        </div>
+        
+   
+        <div class="col-sm-2">
+            <%= p.label :people %> 
+        </div>
+        <div class="col-sm-4">
+            <%= p.number_field :people, placeholder: 'People', :required => true %>
+        </div>
+        
+    </div>
+
+    </div>
+</div><br />
+
+
+
+<div class="form-group">
+     <div class="container">
+     <div class="row">
+        <div class="col-sm-2">
+            <%= p.label :description %> 
+        </div>
+        <div class="col-md-4">
+            <%= p.text_area :description, placeholder: 'Tell us something about this place.', :required => true %>
+        </div>
+
+         <div class="col-sm-2">
+             <p><%= p.label :sub_category_id %> </p>
+        </div>
+        <div class="col-sm-4">
+          <%= grouped_collection_select(:property, :sub_category_id, Category.all, :sub_categories, :name, :id, :name) %>
+
+        
+        </div>
+    </div>
+    </div>
+    
+</div><br />
+
+<div class="form-group">
+
+     <div class="container">
+     <div class="row">
+         
+        <div class="col-md-6">
+            <%= image_tag(@property.image, style: "width:100px;height:100px;") if @property.image.attached? %>
+             <%= p.file_field :image %>
+        </div>
+
+         
+        <div class="col-md-6">
+            <%= image_tag(@property.image1, style: "width:100px;height:100px;") if @property.image1.attached? %>
+             <%= p.file_field :image1 %>
+        </div>
+    </div>
+
+     <div class="row">
+        
+        <div class="col-md-6">
+            <%= image_tag(@property.image2, style: "width:100px;height:100px;") if @property.image2.attached? %>
+             <%= p.file_field :image2 %>
+        </div>
+
+        
+        <div class="col-md-6">
+            <%= image_tag(@property.image3, style: "width:100px;height:100px;") if @property.image3.attached? %>
+             <%= p.file_field :image3 %>
+        </div>
+    </div>
+    </div>  
+   
+</div><br />
+
+<!-- :multiple => true, name: 'image_files[]'  -->
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="text-center">
+            <%= link_to "Back", properties_path, class: 'btn btn-primary' %>
+        </div>        
+    </div>
+
+    <div class="col-md-6">
+        <div class="text-center">
+             <%= p.submit @property.new_record? ? 'Save':'Update', class: 'btn btn-primary' %>
+        </div>        
+    </div>
+
+</div>
+
+<% end %>
