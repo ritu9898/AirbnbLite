@@ -78,7 +78,11 @@
           </div>
 
           <div class="col-sm-6">
-            <button>Book</button>
+          <% if Booking.exists?(property_id: p.id) %>
+
+            <%= link_to "Book", new_property_booking_path(p) %>
+           <% end %>
+
           </div>
         </div>
 

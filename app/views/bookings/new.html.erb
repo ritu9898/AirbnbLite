@@ -1,13 +1,124 @@
-<%= form_for @booking, :html => {"data-parsley-validate" => 'parsley'} do |p|  %>
+<div class="container-fluid con-properties">
+    <div class="row">
+      <div class="col-md-6" style="padding-left: 5vw;">
+        <p class="h3 center"><%= @property.name %></p>
+        <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Location:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= @property.location %></p>
+            </div> 
+        </div>
+
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Cost:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= @property.cost %></p>
+            </div> 
+        </div>
+      
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">People:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= @property.people %></p>
+            </div> 
+        </div>
+      
+         <div class="row">  
+            <div class="col-sm-3">
+              <p class="con-font text-secondary">Description:</p>
+            </div>    
+            <div class="col-sm-3">
+              <p class="con-font"><%= @property.description %></p>
+            </div> 
+        </div>
 
 
-<div>
-	<p>
-		Enter date : 
-	</p>
-	<p>
-		Enter time :
-	</p>
+        
+        <h4> By, <%= @property.user&.firstname %></h4><hr />
+      </div>
+      
+      <div class="col-md-6">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag(@property.image, class: 'd-block w-50 h-50') if @property.image.attached?%>
+          </div>
+        <div class="carousel-item">
+            <%= image_tag(@property.image1, class: 'd-block w-50 h-50') if @property.image1.attached?%>
+        </div>
+        <div class="carousel-item">
+            <%= image_tag(@property.image2, class: 'd-block w-50 h-50') if @property.image2.attached?%>
+        </div>
+        </div>
+
+        <a class="carousel-control-prev text-secondary" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only ">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>  
+      </div>
+
+    </div>
+  
+
+<%= form_for @booking, url:property_bookings_path(@property)  do |book|  %>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<p>
+		 		<%= book.label :date %> 
+			</p>
+			<p>
+		 		<%= book.date_field :date, as: :date, value: book.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
+			</p>
+			
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<p>
+		 		<%= book.label :time %> 
+			</p>
+			<p>
+				<%=
+    			book.time_field :time,
+      			value: book.object.try(:strftime,"%H:%M")
+  				%>
+			</p>
+		</div>
+    <%= book.hidden_field :user_id,value: current_user.id %>
+    <%= book.hidden_field :property_id, value: @property.id %>
+    <div class="col-md-6">
+      <p>
+        <%= book.label :people %> 
+      </p>
+      <p>
+        <%=
+          book.number_field :people, :maximum => @property.people, :minimum => 1
+          %>
+      </p>
+    </div>
+	</div>
+	
+  
+
+	<%= book.submit %>
 </div>
 
+
 <% end %>
+
+</div>

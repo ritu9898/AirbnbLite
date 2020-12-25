@@ -18,7 +18,13 @@ Rails.application.routes.draw do
   get 'airbnb/profile'
   root to:"airbnb#home" 
 
-  resources :properties		
+  resources :properties	do
+    resources :bookings do
+      resources :collection
+    end
+  end	
+
+
   resources :categories
   resources :sub_categories
 
@@ -28,6 +34,8 @@ Rails.application.routes.draw do
   resources :favourites do
     get 'add', on: :collection
   end
+
+  # resources :bookings
   # get 'categories/new'
 
 end
