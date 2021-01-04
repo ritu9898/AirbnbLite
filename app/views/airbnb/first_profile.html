@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Profile</title>
+	<%= stylesheet_link_tag "nicepage.css" %>
+</head>
+<body>
+	
+	 
+	<div class="container back">
+		<p class="h2">My Profile page</p>
+	</div>
+
+	<div class="container" style="background-color:  #c8daed ;">
+		<div class="row">
+			<div class="col-md-4">
+				<h5>FirstName</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.firstname %>
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>LastName</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.lastname %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>Email</h5>
+			</div>
+			<div class="col-md-4">
+				<%= current_user.email %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h5>isHost?</h5>
+			</div>
+			<div class="col-md-4">
+				<%# if current_user.has_role?('host') %>
+				<% if current_user.host? %>
+					<p>Host</p>
+				<% else %>
+					<p>Tenant</p>
+				<% end %>
+			</div>
+		</div>
+
+			<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Favourites", favourites_path , class: "text-primary"%>
+				
+			</div>
+			<div class="col-md-4">
+				<%= link_to "My bookings", property_bookings_path(current_user) , class: "text-primary"%>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Change Password", change_password_path, class: "text-primary"%>
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<%= link_to "Delete my account", registration_path(current_user), class: "text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+

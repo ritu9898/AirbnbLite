@@ -1,0 +1,264 @@
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Black Dashboard by Creative Tim
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <%= stylesheet_link_tag "nucleo-icons.css" %>
+  <!-- <link href="../assets/css/nucleo-icons.css" rel="stylesheet" /> -->
+  <!-- CSS Files -->
+  <%= stylesheet_link_tag "black-dashboard.css" %>
+  <!-- <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" /> -->
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+   <%= stylesheet_link_tag "demo.css" %>
+  <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <ul class="nav">
+
+          <li class="active ">
+            <a href="./dashboard.html">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+           <li>
+            <a href="./icons.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Icons</p>
+            </a>
+          </li>
+          <li>
+            <a href="./map.html">
+              <i class="tim-icons icon-pin"></i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li>
+            <a href="./notifications.html">
+              <i class="tim-icons icon-bell-55"></i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li>
+            <a href="./user.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          
+        </div>
+
+      </nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+
+        <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h5 class="card-category">Total Shipments</h5>
+                    <h2 class="card-title">Performance</h2>
+                    <div id="draw">
+                      <%= pie_chart(fetch_data) %>
+                      <%#= pie_chart SubCategory.group(:categories).count %>
+                    </div>
+                    <div id="book">
+                      <%= pie_chart(booking_data) %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                      <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                        <input type="radio" name="options" checked>
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" id="properties">Properties</span>
+                        <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-single-02"></i>
+                        </span>
+                      </label>
+                      <label class="btn btn-sm btn-primary btn-simple" id="1">
+                        <input type="radio" class="d-none d-sm-none" name="options">
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" id="bookings">Bookings</span>
+                        <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-gift-2"></i>
+                        </span>
+                      </label>
+                      <label class="btn btn-sm btn-primary btn-simple" id="2">
+                        <input type="radio" class="d-none" name="options">
+                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
+                        <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-tap-02"></i>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="chartBig1"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row starts -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h5 class="card-category">Total Data</h5>
+                    <h2 class="card-title">Properties</h2>
+                    <div class="row">
+
+                    <div class="col-md-12" id="dt">
+                      
+                        <table id="example" class="table table-striped table-bordered" style="width: 800px;">
+                          <thead>
+                            <tr>
+                              <th class="table-space">Name</th>
+                              <th class="table-space">Cost</th>
+                              <th class="table-space">People</th>
+                              <th class="table-space">Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%# u = User.joins(:properties).where('properties.user_id = users.id') %>
+                          <% @properties.each do |p| %>
+                          <%# u.each do |p| %>
+                          <tr>
+                            <td><%= p.name %></td>
+                            <td><%= p.cost %></td>
+                            <td><%= p.people %></td>
+                            <td><%= p.description %></td>
+                            <%# u = SubCategory.joins(:properties).where('id = p.sub_category_id') %>
+                            <!-- <td><%#= u.name %></td> -->
+                          </tr>
+                          <% end %>
+                          </tbody>
+                        </table>
+                     
+                    </div>
+
+
+                     <div class="col-md-12" id="bt">
+                      
+                        <table id="example" class="table table-striped table-bordered" style="width: 800px;">
+                          <thead>
+                            <tr>
+                              <th class="table-space">Name</th>
+                              <th class="table-space">Cost</th>
+                              <th class="table-space">People</th>
+                              <th class="table-space">Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%# u = User.joins(:properties).where('properties.user_id = users.id') %>
+                          <% @properties.each do |p| %>
+                          <%# u.each do |p| %>
+                          <tr>
+                            <td><%= p.name %></td>
+                            <td><%= p.cost %></td>
+                            <td><%= p.people %></td>
+                            <td><%= p.description %></td>
+                            <%# u = SubCategory.joins(:properties).where('id = p.sub_category_id') %>
+                            <!-- <td><%#= u.name %></td> -->
+                          </tr>
+                          <% end %>
+                          </tbody>
+                        </table>
+                     
+                    </div>
+
+                    </div> <!-- End of row -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row ends -->
+
+      </div>  
+
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#book").hide();
+    $("#bookings").on('click',function(){
+      console.log("In Bookings")
+      $("#draw").hide();
+      $("#book").show();
+      
+      $.ajax({
+        url: '/booking',
+        type: 'get',
+        dataType : 'script',
+        success: function(result){
+          console.log('Success');
+        }
+      })
+
+    })
+
+    $("#properties").on('click', function(){
+      $("#book").hide();
+      $("#draw").show();
+    })
+  });
+    </script>
+ <!-- <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script> -->
+  </div>

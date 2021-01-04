@@ -66,6 +66,28 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+
+  config.action_mailer.delivery_method = :smtp
+  host = 'ritu.kapadia@bacancytechnology.com' #replace with your own url
+  config.action_mailer.default_url_options = { host: host }
+
+# SMTP settings for gmail
+config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => "ritu.kapadia@bacancytechnology.com",
+  :password             => "1234Ritu",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
+
+  #Stripe for payment
+  config.stripe.secret_key = Rails.application.credentials.stripe[:production][:sk_test_51I3cWvJCefvBFRZIrnOKCz7qqXRzkTjQ5nBqkhFLNbMlKsd0dmGViMtyfLW9j4Pucem5Fa6EfmD3DqRCfPVajibI00WDvMd4Zs]
+config.stripe.publishable_key = Rails.application.credentials.stripe[:production][:pk_test_51I3cWvJCefvBFRZI0cbAHmz0iuRN9zEZsioj6eZ1nNdmcGYo25DbyOFiJ3pT4BlQOUfGlUWYv4rHu8Thru3OTVm000rNOCExzb]
+
+  
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

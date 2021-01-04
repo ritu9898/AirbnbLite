@@ -17,7 +17,7 @@
             <%= p.label :name %> 
         </div>
         <div class="col-sm-4">
-            <%= p.text_field :name, placeholder: 'Property/Owner Name', :required => true, data:{'parsley-required-message':'Name is required'}%>
+            <%= p.text_field :name, placeholder: 'Property/Owner Name', :required => true, data:{'parsley-required-message':'Name is required'}, class: "form-control"%>
         </div>
         
    
@@ -25,7 +25,7 @@
             <%= p.label :location %> 
         </div>
         <div class="col-sm-4">
-            <%= p.text_field :location, placeholder: 'Location', required:  :true, data:{'parsley-required-message':'Location is required'} %>
+            <%= p.text_field :location, placeholder: 'Location', required:  :true, data:{'parsley-required-message':'Location is required'}, class: "form-control" %>
         </div>
         
     </div>
@@ -41,7 +41,7 @@
             <%= p.label :cost %> 
         </div>
         <div class="col-sm-4">
-            <%= p.number_field :cost, placeholder: 'Cost', :required => true %>
+            <%= p.number_field :cost, placeholder: 'Cost', :required => true, class: "form-control", min: 100 %>
         </div>
         
    
@@ -49,7 +49,7 @@
             <%= p.label :people %> 
         </div>
         <div class="col-sm-4">
-            <%= p.number_field :people, placeholder: 'People', :required => true %>
+            <%= p.number_field :people, placeholder: 'People', :required => true, class: "form-control", min: 1 %>
         </div>
         
     </div>
@@ -66,7 +66,7 @@
             <%= p.label :description %> 
         </div>
         <div class="col-md-4">
-            <%= p.text_area :description, placeholder: 'Tell us something about this place.', :required => true %>
+            <%= p.text_area :description, placeholder: 'Tell us something about this place.', :required => true, class: "form-control" %>
         </div>
 
          <div class="col-sm-2">

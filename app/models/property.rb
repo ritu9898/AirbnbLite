@@ -15,13 +15,23 @@ class Property < ApplicationRecord
   belongs_to :user
   has_many :sub_categories
   has_many :favourites
-  has_one :booking
+  has_many :bookings
 
   has_one_attached :image
   has_one_attached :image1
   has_one_attached :image2
   has_one_attached :image3
 
+  
+
+  # scope :search_property, ->(query) { where(['name LIKE ?', "%#{query}%"]) }
+
+
+  def unavailable_dates
+    #  booking.pluck(:startdate, :enddate).map do |range|
+    #   { from: range[0], to: range[1] }
+    # end
+  end
 
   private
 

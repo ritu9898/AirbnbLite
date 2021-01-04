@@ -1,0 +1,51 @@
+<%= form_for @booking, url:property_bookings_path(@property)  do |book|  %>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<p>
+		 		<%= book.label :date %> 
+			</p>
+			<p>
+		 		<%= book.date_field :date, as: :date, value: book.object.try(:strftime,"%m/%d/%Y"), class: 'form-control', id: "date" %>
+			</p>
+			
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<p>
+		 		<%= book.label :time %> 
+			</p>
+			<p>
+				<%=
+    			book.time_field :time,
+      			value: book.object.try(:strftime,"%H:%M"), id: "time"
+  				%>
+			</p>
+		</div>
+    <%= book.hidden_field :user_id,value: current_user.id %>
+    <%= book.hidden_field :property_id, value: @property.id %>
+    <div class="col-md-3">
+      <p>
+        <%= book.label :people %> 
+      </p>
+      <p>
+        <%=
+          book.number_field :people, max: @property.people, min: 1
+          %>
+      </p>
+    </div>
+	</div>
+	
+  
+
+  <button id="book">Book</button>
+
+	<%#= book.submit %>
+</div>
+
+
+<% end %>

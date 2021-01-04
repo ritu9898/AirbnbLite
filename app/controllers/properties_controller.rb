@@ -6,6 +6,7 @@ def index
 	# @properties = Property.order(created_at: :desc).page(params[:page]).per(5)
 	
 	@properties = Property.page params[:page]
+	# @properties = Property.all
 	# binding.pry
 end
 
@@ -47,6 +48,13 @@ def create
 		
 		render 'new'
 	end
+end
+
+def search
+	# binding.pry
+	@properties = Property.where(['name LIKE ?', "%#{params[:data]}%"])
+	# search_property(params[:data]).page params[:page]
+	# binding.pry
 end
 
 private

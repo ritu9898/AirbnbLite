@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Properties</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Volkhov&display=swap" rel="stylesheet"> 
+    <%= stylesheet_link_tag "nicepage.css" %>
+</head>
+<body>
+
+<!-- Header starts -->
+
+    <header class="u-clearfix u-header u-header" id="sec-2749">
+      <div class="u-clearfix u-sheet ">
+         <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item">
+               <%= link_to 'Home', root_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <li class="u-nav-item">
+                 <%= link_to 'About', root_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+                  
+              </li>
+
+              <%
+                if !user_signed_in?
+              %>
+
+               <li class="u-nav-item">
+                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+
+              <%
+                else
+              %>
+
+              <li class="u-nav-item">
+                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <li class="u-nav-item">
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
+              </li>
+
+              <% end %>
+
+            </ul>
+          </div>
+          </div>
+    </header>
+    <!-- Header ends -->
+
+
+<div class="container back">
+        <p class="h2">Properties</p>
+    </div>
+
+<% if user_signed_in? && current_user.host? %>
+
+  <div class="row" style="justify-content: center">
+    <div class="col-md-6">
+         
+         <!-- <i class="fas fa-plus-circle"></i> -->
+         <%= link_to new_property_path do %>
+          <%= fa_icon "plus" %>
+         <% end %> 
+
+    </div>
+    <div class="col-md-6">     
+
+         <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search" style="width: 276px;">
+         
+    </div>
+  </div>
+ 
+<% else %>
+
+	
+<% end %>
+	   <%= render partial: 'property_data' %>
+
+  
+</body>
+<!-- 
+<script>
+  $(document).ready(function () {
+     $('.fav').on('click', function () {
+      console.log("HElllo");
+       var changevalue = $('.fav').val();
+       debugger
+       alert(changevalue);
+       var url = "/client/filterdata";
+       $.ajax({
+         headers: {
+           'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+         },
+         type: "get",
+         url: url,
+         data: {
+           filter: changevalue
+         }
+       });
+     });
+   });
+</script> -->
+
+</html>

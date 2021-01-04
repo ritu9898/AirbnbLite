@@ -31,56 +31,7 @@
   </head>
   <body class="u-body"> 
 
-    <!-- Header starts -->
-
-    <header class="u-clearfix u-header u-header" id="sec-2749">
-      <div class="u-clearfix u-sheet ">
-         <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1">
-
-              
-
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
-              </li>
-
-              <li class="u-nav-item">
-                 <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-                  
-              </li>
-
-              <%
-                if !user_signed_in?
-              %>
-
-               <li class="u-nav-item">
-                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-
-              <%
-                else
-              %>
-
-              <li class="u-nav-item">
-                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <% end %>
-
-            </ul>
-          </div>
-          </div>
-    </header>
-    <!-- Header ends -->
+ 
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -95,9 +46,10 @@
             <div class="u-layout-row">
               <div class="u-size-30">
                 <div class="u-layout-col">
-                  <div class="u-align-left u-container-style u-image u-layout-cell u-right-cell u-size-60 u-image-1" data-image-width="1280" data-image-height="736">
+                    <%= image_tag "1.jpeg", style: 'height:50vw;width:100vw;margin-bottom:10px;margin-top:10px;' %>
+                  <!-- <div class="u-align-left u-container-style u-image u-layout-cell u-right-cell u-size-60 u-image-1" data-image-width="1280" data-image-height="736">
                     <div class="u-container-layout"></div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="u-size-30">

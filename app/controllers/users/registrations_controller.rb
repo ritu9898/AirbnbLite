@@ -25,15 +25,33 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	end
 
 	def change_password
-
-		 User.find(id).reset_password(password, password)
-	end
+		# binding.pry
+    if params && params[:user]
+      if account_update_params[:password] == account_update_params[:password_confirmation]
+        if current_user.update_attributes(password: account_update_params[:password])
+          bypass_sign_in current_user
+          redirect_to root_path
+          flash[:notice] = 'Password Changed Successfully!'
+        else
+          redireact_to change_password_path
+          flash[:error] = 'Enter valid password!'
+        end
+      else
+        flash[:error] = 'Enter valid password!'
+      end
+    end
+  end
 
 	private
 
 	def sign_up_params
-		# binding.pry
+		binding.pry
 		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :host)
+		if current_user.host?
+			current_user.add_role :host
+		else
+			current_user.add_role :tenant
+		UserMailer.with(user: @user).new_email.deliver_now
 	end
 	
 	def account_update_params

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
     get '/users/password/edit' => 'devise/passwords#edit'
+     get 'change_password' => 'users/registrations#change_password'
+    patch 'change_password' => 'users/registrations#change_password'
    # ?post '/users' => 'users/registrations_controller#create'
   end
 
@@ -18,9 +20,15 @@ Rails.application.routes.draw do
   get 'airbnb/profile'
   root to:"airbnb#home" 
 
+  # get '/card/new' => 'billing#new_card', as: :add_payment_method
+
+
+  # get 'airbnb/home'
+
   resources :properties	do
+    get 'search', on: :collection
     resources :bookings do
-      resources :collection
+      get :billing, on: :collection
     end
   end	
 
@@ -34,6 +42,8 @@ Rails.application.routes.draw do
   resources :favourites do
     get 'add', on: :collection
   end
+
+  resources :dashboard
 
   # resources :bookings
   # get 'categories/new'

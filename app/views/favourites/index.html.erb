@@ -1,16 +1,22 @@
+<%= stylesheet_link_tag "nicepage.css" %>
+
+
 <% @favourites.each do |fav| %>
 	
 
 	<div class="container">
 		<div>
 			<div class="card mb-3">
-  				<div class="container">
+  				<div class="container" style="background-color: #fef5e7 ;">
   					<div class="row">
   						<div class="col-md-6">
   							<div class="card-body">
     							<h5 class="card-title"><%= fav.property&.name %></h5>
-    							<p class="card-text"><%= fav.property&.cost %></p>
-    							<p class="card-text"><%= fav.property&.people %></p>
+    							<p class="card-text">Location : <%= fav.property&.location %></p>
+                  <p class="card-text">Cost : <%= fav.property&.cost %></p>
+                  <p class="card-text">People : <%= fav.property&.people %></p>
+                  <p class="card-text">Description : <%= fav.property&.description %></p>
+                  <p class="card-text">EmailID : <%= fav.property&.user&.email %></p>
     							<p class="card-text"><small class="text-muted">
                     <%= link_to "Remove from wishlist", favourite_path(fav.property), :method=>"delete"%></small></p>
   							</div>
@@ -18,7 +24,36 @@
 
   						<div class="col-md-6">
 
-                  
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag(fav.property&.image, class: 'image_custom') if fav.property&.image.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(fav.property&.image1, class: 'image_custom') if fav.property&.image1.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(fav.property&.image2, class: 'image_custom') if fav.property&.image2.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(fav.property&.image3, class: 'image_custom') if fav.property&.image3.attached?%>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      </div>
   							
   						</div>
 
@@ -27,15 +62,17 @@
   				
 			</div>
 			
-      <div class="row">
-        <div class="col-md-3">
-          <%= link_to "Back", properties_path %>
-        </div>
-        
-      </div>
+     
 		</div>
 	</div>
 
 
 
 <% end %>
+
+ <div class="row">
+        <div class="col-md-3">
+          <%= link_to "Back", properties_path %>
+        </div>
+        
+      </div>

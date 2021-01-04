@@ -1,0 +1,4 @@
+ <%= simple_form_for([@user, @booking]) do |f| %>
+  <%= f.input :startdate, as: :string, label: "Dates", placeholder: "From", wrapper_html: { class: "inline_field_wrapper" } %>
+  <%= f.input :enddate, as: :string, label: '&nbsp;'.html_safe, placeholder: "To", disabled: true, wrapper_html: { class: "inline_field_wrapper" } %>
+  <%= f.submit "book", class: "btn btn-primary btn-lg btn-block btn-booking" %>

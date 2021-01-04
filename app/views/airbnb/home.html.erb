@@ -34,58 +34,10 @@
   </head>
   <body class="u-body">
 
-      <!-- Header starts -->
-
-    <header class="u-clearfix u-header u-header" id="sec-2749">
-      <div class="u-clearfix u-sheet ">
-         <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1">
-
-              
-
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
-              </li>
-
-              <li class="u-nav-item">
-                 <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-                  
-              </li>
-
-              <%
-                if !user_signed_in?
-              %>
-
-               <li class="u-nav-item">
-                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-
-              <%
-                else
-              %>
-
-              <li class="u-nav-item">
-                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <% end %>
-
-            </ul>
-          </div>
-          </div>
-    </header>
-    <!-- Header ends -->
+    
     
     <section class="-lg -sm -xl -xs u-clearfix u-image u-shading u-section-1" src="" id="carousel_2165">
+      <%= image_tag "2.jpg", style: 'height:50vw;width:100vw;margin-bottom:10px;margin-top:10px;' %>
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-align-left-xs u-align-right-lg u-align-right-md u-align-right-sm u-align-right-xl u-container-style u-group u-group-1">
           <div class="u-container-layout u-container-layout-1">
@@ -96,11 +48,12 @@
         </div>
       </div>
     </section>
-    <section class="u-clearfix u-palette-1-base u-section-2" id="carousel_965d">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
+    <section>
+     <!--  <div class="u-clearfix u-sheet u-sheet-1"> -->
+       <!--  <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout"> -->
+            <%= image_tag "1.jpg", style: 'height:50vw;width:98vw;margin:10px;margin-right:2vw;' %>
+            <!-- <div class="u-layout-row">
               <div class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-container-style u-image u-layout-cell u-left-cell u-size-20 u-image-1">
                 <div class="u-container-layout"></div>
               </div>
@@ -110,10 +63,10 @@
               <div class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-container-style u-image u-layout-cell u-right-cell u-size-20 u-image-3">
                 <div class="u-container-layout"></div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div> -->
+        <!--   </div>
+        </div> -->
+      <!-- </div> -->
     </section>
     <section class="u-clearfix u-section-3" id="carousel_e00c">
       <div class="u-clearfix u-sheet u-sheet-1">

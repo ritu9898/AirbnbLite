@@ -52,6 +52,28 @@ gem 'kaminari'
 #Parsley for validation
 gem "parsley-rails"
 
+#Rolify
+gem "rolify"
+
+#Well, it's used with rolify
+gem "ransack", '~> 2.1'
+
+
+#Simple form
+gem 'simple_form'
+
+#Stripe for payment
+gem 'stripe'
+
+gem 'stripe-rails'
+  
+
+#Chart
+gem "chartkick"  
+
+# Whenever for Cron automated tasks
+gem 'whenever', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -65,6 +87,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+#DataTable
+gem 'rails-assets-jquery', source: 'https://rails-assets.org'
+gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

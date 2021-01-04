@@ -1,0 +1,9 @@
+<% flash_main_class = (user_signed_in? == false) ? 'top-align-flash-message' : 'right-align-flash-message' %>
+<div id="flash-messages-section" class="<%= flash_main_class %>">
+  <% flash.each do |key, value| %>
+    <p class="<%= flash_class(key) %> mt-4">
+      <a href="#" data-dismiss="alert" class="close-flash">×</a>
+      <strong><%= flash_prefix(key)%></strong>&nbsp;<%= value %>&nbsp;&nbsp;&nbsp;&nbsp;
+    </p>
+  <% end %>
+</div>

@@ -1,124 +1,128 @@
-<div class="container-fluid con-properties">
-    <div class="row">
-      <div class="col-md-6" style="padding-left: 5vw;">
-        <p class="h3 center"><%= @property.name %></p>
-        <div class="row">  
-            <div class="col-sm-3">
-              <p class="con-font text-secondary">Location:</p>
-            </div>    
-            <div class="col-sm-3">
-              <p class="con-font"><%= @property.location %></p>
-            </div> 
-        </div>
+<%= stylesheet_link_tag "nicepage.css" %>
 
-         <div class="row">  
-            <div class="col-sm-3">
-              <p class="con-font text-secondary">Cost:</p>
-            </div>    
-            <div class="col-sm-3">
-              <p class="con-font"><%= @property.cost %></p>
-            </div> 
-        </div>
-      
-         <div class="row">  
-            <div class="col-sm-3">
-              <p class="con-font text-secondary">People:</p>
-            </div>    
-            <div class="col-sm-3">
-              <p class="con-font"><%= @property.people %></p>
-            </div> 
-        </div>
-      
-         <div class="row">  
-            <div class="col-sm-3">
-              <p class="con-font text-secondary">Description:</p>
-            </div>    
-            <div class="col-sm-3">
-              <p class="con-font"><%= @property.description %></p>
-            </div> 
-        </div>
-
-
-        
-        <h4> By, <%= @property.user&.firstname %></h4><hr />
-      </div>
-      
-      <div class="col-md-6">
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <%= image_tag(@property.image, class: 'd-block w-50 h-50') if @property.image.attached?%>
-          </div>
-        <div class="carousel-item">
-            <%= image_tag(@property.image1, class: 'd-block w-50 h-50') if @property.image1.attached?%>
-        </div>
-        <div class="carousel-item">
-            <%= image_tag(@property.image2, class: 'd-block w-50 h-50') if @property.image2.attached?%>
-        </div>
-        </div>
-
-        <a class="carousel-control-prev text-secondary" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only ">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>  
-      </div>
-
-    </div>
   
 
-<%= form_for @booking, url:property_bookings_path(@property)  do |book|  %>
+  <div class="container">
+    <div>
+      <div class="card mb-3">
+          <div class="container" style="background-color: #fef5e7 ;">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title"><%= @property.name %></h5>
+                  <p class="card-text">Location : <%= @property.location %></p>
+                  <p class="card-text">Cost : <%= @property.cost %></p>
+                  <p class="card-text">People : <%= @property.people %></p>
+                  <p class="card-text">Description : <%= @property.description %></p>
+                  <p class="card-text">EmailID : <%= @property.user&.email %></p>
 
+                  <p class="card-text"><small class="text-muted">By, 
+                    <%= @property.user&.firstname  %> <%= @property.user&.lastname  %>
+                    </small></p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag(@property.image, class: 'image_custom') if @property.image.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(@property.image1, class: 'image_custom') if @property.image1.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(@property.image2, class: 'image_custom') if @property.image2.attached?%>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag(@property.image3, class: 'image_custom') if @property.image3.attached?%>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      </div>
+                
+              </div>
+
+            </div>
+          </div>
+          
+      </div>
+      
+     
+    </div>
+  </div>
+
+
+  <%= form_for @booking, url:property_bookings_path(@property)  do |book|  %>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<p>
-		 		<%= book.label :date %> 
-			</p>
-			<p>
-		 		<%= book.date_field :date, as: :date, value: book.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %>
-			</p>
-			
-			
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<p>
-		 		<%= book.label :time %> 
-			</p>
-			<p>
-				<%=
-    			book.time_field :time,
-      			value: book.object.try(:strftime,"%H:%M")
-  				%>
-			</p>
-		</div>
+  <div class="row">
+    <div class="col-md-3">
+      <p>
+        <%= book.label :startdate %> 
+      </p>
+      <p>
+        <%= book.date_field :startdate, as: :date, value: book.object.try(:strftime,"%m/%d/%Y"), class: 'form-control', id: "date" %>
+      </p>
+    </div>
+    
+    <div class="col-md-3">
+      <p>
+        <%= book.label :enddate %> 
+      </p>
+      <p>
+        <%= book.date_field :enddate, as: :date, value: book.object.try(:strftime,"%m/%d/%Y"), class: 'form-control', id: "date" %>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Flatpickr -->
+  <div class="row">
+    
+<%# end %> 
+  </div>
+
+
+  <div class="row">
+    
     <%= book.hidden_field :user_id,value: current_user.id %>
     <%= book.hidden_field :property_id, value: @property.id %>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <p>
         <%= book.label :people %> 
       </p>
       <p>
         <%=
-          book.number_field :people, :maximum => @property.people, :minimum => 1
+          book.number_field :people, max: @property.people, min: 1
           %>
       </p>
     </div>
-	</div>
-	
+  </div>
   
-
-	<%= book.submit %>
+  
+  <%= link_to "Back", properties_path, class: 'btn btn-outline-primary' %>
+  <button id="book" class="btn btn-outline-success">Book</button>
+  <%#= book.submit %>
 </div>
 
 
 <% end %>
 
-</div>
+
+
+

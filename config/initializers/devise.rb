@@ -166,6 +166,8 @@ Devise.setup do |config|
   # The time the user will be remembered without asking for credentials again.
   # config.remember_for = 2.weeks
 
+  config.scoped_views = true
+
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
 
