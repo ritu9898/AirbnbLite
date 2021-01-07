@@ -14,8 +14,10 @@
                                   <% if current_user.has_role? :host %>
                                 <%# if current_user.host? %>
                                     <p>Host</p>
-                                <% else %>
+                                <% elsif current_user.has_role? :tenant %>
                                     <p>Tenant</p>
+                                <% else %>
+                                    <p>Viewer</p>
                                 <% end %>  
                                 </p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                             </div>

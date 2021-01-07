@@ -1,14 +1,21 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-	# def create
-	# 	binding.pry
-	# 	@user = User.new(sign_up_params)
-	# 	if @user.save
-	# 		redirect_to root_path
-	# 	else
-	# 		redirect_to new_user_registration_path
-	# 	end
-	# end
+	def create
+		super
+		binding.pry
+		if params[:theme] == nil
+      current_user.add_role :viewer
+    else      
+  		if params[:theme] == "host"
+    		current_user.add_role :host
+  		elsif params[:theme] == "tenant"
+    		current_user.add_role :tenant
+  		else
+    		redirect_to new_user_session_path
+    		flash[:error] = "ERROR!"
+  		end  
+    end
+	end
 
 	# def destroy
 	# 	@user = User.find(params[:id])
@@ -19,6 +26,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 	# 	end
 	# end
+
+	def destroy
+    	resource.soft_delete
+    	Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    	set_flash_message :notice, :destroyed
+    	yield resource if block_given?
+    	respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+  	end
 
 	def edit
 		
@@ -45,17 +60,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	private
 
 	def sign_up_params
-		binding.pry
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :host)
-		if current_user.host?
-			current_user.add_role :host
-		else
-			current_user.add_role :tenant
-		UserMailer.with(user: @user).new_email.deliver_now
+		# binding.pry
+      	params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)		
 	end
 	
 	def account_update_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :host)
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
 	end
 	
 	

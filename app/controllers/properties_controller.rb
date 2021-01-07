@@ -1,12 +1,12 @@
 class PropertiesController < ApplicationController
 
-before_action :authenticate_user!
+# before_action :authenticate_user!
 
 def index
 	# @properties = Property.order(created_at: :desc).page(params[:page]).per(5)
 	
-	@properties = Property.page params[:page]
-	# @properties = Property.all
+	# @properties = Property.page params[:page]
+	@properties = Property.all
 	# binding.pry
 end
 

@@ -3,7 +3,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Black Dashboard by Creative Tim
+    Dashboard
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -160,7 +160,7 @@
                 <div class="row">
                   <div class="col-sm-6 text-left">
                     <h5 class="card-category">Total Data</h5>
-                    <h2 class="card-title">Properties</h2>
+                    <h2 class="card-title" id="dataName">Properties</h2>
                     <div class="row">
 
                     <div class="col-md-12" id="dt">
@@ -192,35 +192,36 @@
                      
                     </div>
 
-
-                     <div class="col-md-12" id="bt">
+                       <div class="col-md-12" id="bt">
                       
-                        <table id="example" class="table table-striped table-bordered" style="width: 800px;">
+                        <table id="example1" class="table table-striped table-bordered" style="width: 800px;">
                           <thead>
                             <tr>
                               <th class="table-space">Name</th>
-                              <th class="table-space">Cost</th>
+                              <th class="table-space">StartDate</th>
+                              <th class="table-space">EndDate</th>
                               <th class="table-space">People</th>
-                              <th class="table-space">Description</th>
+                              <th class="table-space">Total</th>
+
                             </tr>
                           </thead>
                           <tbody>
-                            <%# u = User.joins(:properties).where('properties.user_id = users.id') %>
-                          <% @properties.each do |p| %>
-                          <%# u.each do |p| %>
+                          
+                          <% @bookings.each do |b| %>
                           <tr>
-                            <td><%= p.name %></td>
-                            <td><%= p.cost %></td>
-                            <td><%= p.people %></td>
-                            <td><%= p.description %></td>
-                            <%# u = SubCategory.joins(:properties).where('id = p.sub_category_id') %>
-                            <!-- <td><%#= u.name %></td> -->
+                            <td><%= b.property&.name %></td>
+                            <td><%= b.startdate %></td>
+                            <td><%= b.enddate %></td>
+                            <td><%= b.people %></td>
+                            <td><%= b.total %></td>
+
                           </tr>
                           <% end %>
                           </tbody>
                         </table>
                      
                     </div>
+                    
 
                     </div> <!-- End of row -->
                   </div>
@@ -238,11 +239,17 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $("#book").hide();
+        $("#bt").hide();
+        $("#dataName").html("Properties")
     $("#bookings").on('click',function(){
       console.log("In Bookings")
       $("#draw").hide();
       $("#book").show();
-      
+      $("#dt").hide();
+      $("#bt").show();  
+        $("#dataName").html("Bookings")
+
+
       $.ajax({
         url: '/booking',
         type: 'get',
@@ -257,6 +264,10 @@
     $("#properties").on('click', function(){
       $("#book").hide();
       $("#draw").show();
+      $("#bt").hide();
+      $("#dt").show();
+      $("#dataName").html("Properties")
+
     })
   });
     </script>

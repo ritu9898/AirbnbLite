@@ -48,13 +48,13 @@ $(document).ready(function(){
        if($(this).hasClass('color_red'))
        {
        	console.log("Changed!");
-       		$(this).removeClass('color_red');
-       		$(this).addClass('color_white');
+       		// $(this).removeClass('color_red');
+       		// $(this).addClass('color_white');
        }
        else
        {
-       		$(this).removeClass('color_white');
-       		$(this).addClass('color_red');
+       		// $(this).removeClass('color_white');
+       		// $(this).addClass('color_red');
        }
        var url = "/favourites/add";
        $.ajax({
@@ -102,16 +102,16 @@ $(document).ready(function(){
 
 
   $(document).ready(function () {
-  $("#search").on('keyup',function(){
-   var data = $('#search').val();
-   // alert(data);
-   var url="/properties/search";
-   $.ajax({
-    type : "get",
-    url : url,
-    data : {"data":data}
-  });
- });
+ //  $("#search").on('keyup',function(){
+ //   var data = $('#search').val();
+ //   // alert(data);
+ //   var url="/properties/search";
+ //   $.ajax({
+ //    type : "get",
+ //    url : url,
+ //    data : {"data":data}
+ //  });
+ // });
 
   $("#searchButton").on('click',function(){
    var data = $('#searchData').val();
@@ -135,6 +135,7 @@ $(document).ready(function(){
 
   // DataTable
   $('#example').DataTable();
+  $('#example1').DataTable();
 
 });
 

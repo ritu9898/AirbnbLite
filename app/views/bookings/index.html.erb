@@ -6,16 +6,11 @@
 <% $diff %>
 <% $sd %> <% $ed %>
 <%# @bookings.map(&:property).uniq.each do |fav| %>
-	
-<% @bookings.each do |fav| %>
- <% if fav.errors.any? %>
+  	
      
-    <ul>
-    <% fav.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  <% end %>
+
+<% @bookings.each do |fav| %>
+ 
 
 	<div class="container">
 		<div>
@@ -30,8 +25,14 @@
                   <p class="card-text">From : <%= fav.startdate %></p>
                   <p class="card-text">To : <%= fav.enddate %></p>
                   
-    							<p class="card-text"><small class="text-muted">
-                    <%#= link_to "Remove from wishlist", favourite_path(fav.property), :method=>"delete"%></small></p>
+                  <% if Date.today + 2 == Date.parse(fav.startdate) %>
+                  <% else %>
+    							   <p class="card-text">
+                        <small class="text-muted">
+                          <%= link_to "Cancle this booking", property_booking_path(fav.property&.id, fav.id), :method=>"delete"%>
+                        </small>
+                      </p>
+                  <% end %>
   							</div>
   						</div>
               
@@ -99,7 +100,7 @@
 		</div>
 	</div>
 
-
+<% fav.total = $grand_total %>
 
 <% end %>
 
@@ -109,6 +110,6 @@
         </div>
         <div class="col-md-6">
           <h6>Total : <%= $grand_total %></h6>
-         
+          
         </div>
       </div>

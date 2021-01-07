@@ -1,6 +1,7 @@
 class FavouritesController < ApplicationController
 
 	def add
+		# Rails.cache.fetch([cache_key, __method__])
 		if Favourite.exists?(property_id:params[:property_id],user_id:current_user.id)
 
 

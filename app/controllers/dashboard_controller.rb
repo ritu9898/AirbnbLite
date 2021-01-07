@@ -1,8 +1,17 @@
 class DashboardController < ApplicationController
 
 	def index
-		@properties = Property.all
-		# @properties = Property.page params[:page]
+
+		if current_user.has_role? :host
+			@properties = Property.all.where(user_id: current_user)
+			@bookings = Booking.all
+		elsif current_user.has_role? :tenant
+			
+			@bookings = Booking.where(user_id: current_user.id)
+			@properties = Property.all
+
+		else
+		end	
 	end
 
 	def booking
@@ -10,5 +19,6 @@ class DashboardController < ApplicationController
 	  	format.js
 	  end		
 	end	
+	
 
 end
