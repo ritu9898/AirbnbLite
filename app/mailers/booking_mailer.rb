@@ -12,7 +12,7 @@ class BookingMailer < ApplicationMailer
 
 	def booking_confirm
 		@booking = params[:booking]
-		binding.pry
+		# binding.pry
 		 mail(:to => @booking.user&.email, :subject => "Your booking is confirmed!")
 	end
 end

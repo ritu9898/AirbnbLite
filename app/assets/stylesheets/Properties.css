@@ -43,15 +43,13 @@ p.con-font{
 }
 
 .color_red{
-  background-color: red;
+  /*background-color: red;*/
   color: red;
-  font-size: 24px;
 }
 
 .color_white{
-  background-color: white;
+  /*background-color: white;*/
    color: black;
-  font-size: 24px;
 }
 
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :reviews
   resources :sub_cats
   resources :cats
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -34,6 +35,10 @@ Rails.application.routes.draw do
       # get :billing, on: :collection
       # resources :billing
     # end
+    resources :reviews do
+      get 'rating', on: :collection
+    end
+
   end	
 
 

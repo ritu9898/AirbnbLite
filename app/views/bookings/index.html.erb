@@ -25,7 +25,7 @@
                   <p class="card-text">From : <%= fav.startdate %></p>
                   <p class="card-text">To : <%= fav.enddate %></p>
                   
-                  <% if Date.today + 2 == Date.parse(fav.startdate) %>
+                  <% if Date.today > Date.parse(fav.startdate) - 2 %>
                   <% else %>
     							   <p class="card-text">
                         <small class="text-muted">

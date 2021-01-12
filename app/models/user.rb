@@ -46,6 +46,7 @@ class User < ApplicationRecord
   
 
  has_many :bookings, dependent: :destroy
+ has_many :reviews, dependent: :destroy
 
   def unavailable_dates
     bookings.pluck(:startdate, :enddate).map do |range|

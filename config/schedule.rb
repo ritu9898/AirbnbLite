@@ -27,10 +27,23 @@ set :output, "log/cron.log"
 # 	rake 'sample:send_email'
 # end
 
-every 1.day, :at => "5:20 PM" do
-	b = Booking.all
-	for i in 0..b.length
-		sd = b.startdate
+every 1.day, :at => "12:00 PM" do
+
+	# Delete old bookings
+	# runner "ClearBookingsJob.perform_later"
+
+	#
+	bookings = Booking.all
+
+	# for i in 0..b.length
+	bookings.each do |book|
+		sd = book.startdate
+		ed = book.enddate
+
+		if Date.parse(ed) < Date.today
+			book.destroy
+		end
+
 		if Date.parse(sd) == Date.today - 1
 			rake 'sample:send_email'
 		end
@@ -40,3 +53,5 @@ every 1.day, :at => "5:20 PM" do
 	# a = t.split('/',3)
 
 end
+
+

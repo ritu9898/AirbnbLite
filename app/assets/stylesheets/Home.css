@@ -1,3 +1,29 @@
+/* Custom CSS */
+
+.home{
+  padding: 0;
+  margin: 0;
+}
+
+.small-box{
+  padding: 1vw;
+  margin: 1vw;
+}
+
+.experience{
+  background-color: black;
+  color: white;
+  padding: 1vw;
+}
+
+
+.api{
+
+  font-family: "AIzaSyAnT6Tu5sFiVw0tYHx-77nMLXG4Mhez-wo"
+}
+
+
+/*END*/
 .u-section-1 {
   background-image: linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("images/01.jpg");
   background-position: 50% 50%;

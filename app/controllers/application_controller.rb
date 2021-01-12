@@ -10,12 +10,14 @@ class ApplicationController < ActionController::Base
   # before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :user_add_role
 
-  # def after_sign_in_path_for(_resource)
-  #   # binding.pry
-  # 		if current_user.has_role? (:tenant)
-  # 			root_path
-  # 		end	
-  # end
+  def after_sign_in_path_for(_resource)
+    # binding.pry
+  		if current_user.has_role? (:admin)
+        rails_admin_path  			
+      else
+        root_path  
+  		end	
+  end
 
   # def user_add_role
   #   if params[:theme]

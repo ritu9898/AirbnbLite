@@ -12,19 +12,22 @@ class BillingController < ApplicationController
     	# 	@billing = Billing.new
     	# 	@billing.name= @booking.name
     	# end
-    	binding.pry
+    	# binding.pry
 
     	# @billing = Billing.new
 
-		if	BookingMailer.with(booking: @booking).booking_confirm.deliver_now
+		# if	BookingMailer.with(booking: @booking).booking_confirm.deliver_now
 			# @booking.each do |booking|
 			# 	Booking.destroy()
 			# end
+			# binding.pry
+			BookingMailer.with(booking: @booking).booking_confirm.deliver_now
+			
 		 	redirect_to properties_path
 			flash[:notice] = "Congratulations! Your booking has been confirmed. :)"
-		else
-			render 'new'
-		end
+		# else
+			# render 'new'
+		# end
     	
     end
 end

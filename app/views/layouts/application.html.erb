@@ -8,11 +8,19 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400&family=PT+Sans+Narrow&family=Rubik:wght@600&display=swap" rel="stylesheet"> 
+
   </head>
 
   <body>
     <%= render partial: 'layouts/shared/flash_messages' %>
     <%= render partial: 'layouts/header' %>
     <%= yield %>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>

@@ -77,6 +77,12 @@ gem 'whenever', require: false
 #Redis
 gem 'redis-rails'
 
+# Map
+# gem 'gmaps4rails'
+
+#Popper js for modal
+# gem 'popperjs'  
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

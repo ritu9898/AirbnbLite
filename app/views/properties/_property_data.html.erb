@@ -63,9 +63,19 @@
           </div>
           <div class="col-sm-3">
             <%# User.where(id: current_user.id).joins(favourites: :property).pluck(:id)%>
-            <% if current_user.present? && p.user&.id == current_user.id %>
-             <p><%= link_to "Edit", edit_property_path(p) %></p>
+            <% if current_user.present? %>
+              <% if p.user&.id == current_user.id %>
+                <p><%= link_to "Edit", edit_property_path(p) %></p>
+              <% else %>
+                <% if Booking.exists?(user_id: current_user.id, property_id: p.id) %>
+                  <p>  
+                    <%= link_to new_property_review_path(p) do %>
+                      <%= fa_icon "comment" %>
+                    <% end %> 
+                  </p>
+                <% end %>
              <% end %>
+            <% end %>
           </div>
           
             <div class="col-sm-3">
@@ -101,6 +111,28 @@
            
 
           <%# end %> <!-- current_user check ends -->
+          </div>
+
+        </div>
+
+        <div class="row">
+          <%
+          avg = 0, total = 0
+          arr = Property.joins(:reviews).where(id: 3).pluck(:rating)
+          arr.each do |a| 
+            total = total + a
+          end
+          avg = total/arr.length
+          # binding.pry
+          %>
+          <div class="col-md-6">
+            <% for i in 1..5 do %>
+              <% if i>avg %>
+                <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'uncolored_star' %> </span>
+              <% else %>
+                <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'colored_star' %> </span>
+              <% end %>
+            <% end %> 
           </div>
         </div>
 
