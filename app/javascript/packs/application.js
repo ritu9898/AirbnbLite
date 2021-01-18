@@ -168,7 +168,8 @@ $(document).ready(function(){
 
   $("#searchButton").on('click',function(){
    var data = $('#searchData').val();
-   // alert(data);
+   alert($("#price").val());
+   console.log($("#price").val())
    var url="/properties/search";
    $.ajax({
     type : "get",

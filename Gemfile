@@ -77,6 +77,13 @@ gem 'whenever', require: false
 #Redis
 gem 'redis-rails'
 
+#Prawn for pdf
+gem 'prawn'
+
+#WKHTMLTOPDF / Wicked_pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Map
 # gem 'gmaps4rails'
 

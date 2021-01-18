@@ -3,7 +3,7 @@
 .image_custom{
   height: 20vw;
   width: 50vw;
-
+  object-fit: cover;
 }
 
 

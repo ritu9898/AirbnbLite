@@ -21,13 +21,34 @@ class BillingController < ApplicationController
 			# 	Booking.destroy()
 			# end
 			# binding.pry
-			BookingMailer.with(booking: @booking).booking_confirm.deliver_now
+			# BookingMailer.with(booking: @booking).booking_confirm.deliver_now
 			
+			
+      show
+      # binding.pry
 		 	redirect_to properties_path
 			flash[:notice] = "Congratulations! Your booking has been confirmed. :)"
+
 		# else
 			# render 'new'
 		# end
     	
+    end
+
+    def show
+       respond_to do |format|
+            format.html
+            format.pdf do
+
+              render pdf: "Booking Confirmed",
+              page_size: 'A4',
+              template: 'billing/show.html.erb',
+              layout: 'pdf.html',
+              orientation: "Landscape",
+              lowquality: true,
+              zoom: 1,
+              dpi: 75
+          end
+        end 
     end
 end

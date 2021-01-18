@@ -52,7 +52,7 @@ end
 
 def search
 	# binding.pry
-	@properties = Property.where(['name LIKE ?', "%#{params[:data]}%"])
+	@properties = Property.where(['name LIKE ? OR location LIKE ?', "%#{params[:data]}%", "%#{params[:data]}%"])
 	# search_property(params[:data]).page params[:page]
 	# binding.pry
 end

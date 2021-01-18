@@ -117,17 +117,19 @@
 
         <div class="row">
           <%
-          avg = 0, total = 0
-          arr = Property.joins(:reviews).where(id: 3).pluck(:rating)
-          arr.each do |a| 
-            total = total + a
+          @avg = 0, total = 0
+          arr = Property.joins(:reviews).where(id: p.id).pluck(:rating)
+          if arr.length != 0
+            arr.each do |a| 
+              total = total + a
+            end
+            @avg = total/arr.length
+            
           end
-          avg = total/arr.length
-          # binding.pry
           %>
           <div class="col-md-6">
             <% for i in 1..5 do %>
-              <% if i>avg %>
+              <% if i == @avg %>
                 <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'uncolored_star' %> </span>
               <% else %>
                 <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'colored_star' %> </span>
