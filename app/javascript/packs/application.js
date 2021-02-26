@@ -191,6 +191,57 @@ $(document).ready(function(){
   $('#example').DataTable();
   $('#example1').DataTable();
 
+
+
+  // Discount First
+
+  // $("#discount").on("click",function(){
+
+  //   let random = Math.floor((Math.random() * 30) + 1);
+  //   alert(random)
+  //   var url="discount";
+  //   $.ajax({
+  //     headers: {
+  //          'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+  //        },
+  //     type : 'GET',
+  //     url : url,
+  //     data : {discount:random},
+  //     dataType : 'script',
+  //     success: function(data) {
+  //       console.log("In success game "+ data);
+  //     }
+  //   });
+  // })
+
+
+  // Discount Second
+
+  $("#discount").on("click",function(){
+
+    let random = Math.floor((Math.random() * 30) + 1);
+    // alert(random);
+    $("#back").css("display","block");
+    $("#discount").html(random);
+    $("#follow").css("display","block");
+    $("#disc").val = random;
+
+    var url="discount";
+     $.ajax({
+      headers: {
+           'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+         },
+      type : 'GET',
+      url : url,
+      data : {discount:random},
+      dataType : 'script',
+      success: function(data) {
+        console.log("In success game "+ data);
+      }
+    });
+  })
+
+
 });
 
 

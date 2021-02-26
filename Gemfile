@@ -80,9 +80,12 @@ gem 'redis-rails'
 #Prawn for pdf
 gem 'prawn'
 
+#Emoji
+gem 'gemoji'
+
 #WKHTMLTOPDF / Wicked_pdf
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+# gem 'wicked_pdf'
+# gem 'wkhtmltopdf-binary'
 
 # Map
 # gem 'gmaps4rails'

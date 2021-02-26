@@ -22,6 +22,13 @@ Rails.application.routes.draw do
 
   get 'airbnb/profile'
   get 'airbnb/about'
+  get 'airbnb/game'
+      
+  # get 'airbnb/discount/:id', to: 'airbnb#game' 
+    
+    get 'airbnb/discount', to: 'airbnb#game' 
+
+
   root to:"airbnb#home" 
 
   # get '/card/new' => 'billing#new_card', as: :add_payment_method

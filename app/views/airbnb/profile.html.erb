@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "profile.css" %>
 
+
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -65,13 +66,28 @@
                                         </h6>
                                     </div>
                                 </div>
-                                
+
+                                <% if current_user.discount != nil %>
+
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <p class="rainbow-4">You have <%= current_user.discount %> % discount </p>
+                                    </div>
+                                </div>
+
+                                <% end %>
+
                                 <ul class="social-link list-unstyled m-t-40 m-b-10">
                                     <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
                                     <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
                                     <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
+                            <!-- <div class="row">
+                                <div class="col-sm-6">
+                                    <p>You have a discount</p>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

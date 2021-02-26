@@ -55,6 +55,12 @@
                $total = fav.property&.cost * $diff 
                $grand_total += $total %>
 
+               <%
+                if current_user.discount == nil
+                  $disc = ($grand_total * current_user.discount)/100 
+                  $grand_total -= $disc
+                end 
+               %>
 
   						<div class="col-md-6">
 
