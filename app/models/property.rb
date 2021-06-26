@@ -16,6 +16,7 @@ class Property < ApplicationRecord
   has_many :sub_categories
   has_many :favourites
   has_many :bookings
+  has_many :reviews, dependent: :destroy
 
   has_one_attached :image
   has_one_attached :image1

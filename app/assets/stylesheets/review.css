@@ -1,0 +1,23 @@
+.review{
+	font-family: 'Rubik', sans-serif;
+}
+
+
+.name{
+	font-family: 'Noto Sans TC', sans-serif;
+    /*font-family: 'PT Sans Narrow', sans-serif;*/
+}
+
+.user{
+	height: 5vw;
+	width: 5vw;
+}
+
+.colored_star{
+	/*background-color: red;*/
+	color: #FF8C00;
+}
+
+.uncolored_star{
+	color: black;
+}

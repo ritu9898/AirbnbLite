@@ -15,6 +15,7 @@ require("chart.js")
 
 import $ from 'jquery';
 global.$ = jQuery;
+//= require jquery
 //= require jquery3
 //= require popper
 //= require turbolinks
@@ -25,6 +26,7 @@ global.$ = jQuery;
 //= require jquery_ujs
 //= require_tree .
 //= require parsley
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -44,18 +46,18 @@ $(document).ready(function(){
 	 	
        var changevalue = parseInt($(this).attr('value'));
        // debugger
-       alert(changevalue);
-       if($(this).hasClass('color_red'))
-       {
-       	console.log("Changed!");
-       		$(this).removeClass('color_red');
-       		$(this).addClass('color_white');
-       }
-       else
-       {
-       		$(this).removeClass('color_white');
-       		$(this).addClass('color_red');
-       }
+       // alert(changevalue);
+       // if($(this).hasClass('color_red'))
+       // {
+       // 	console.log("Changed!");
+       // 		$(this).removeClass('color_red');
+       // 		$(this).addClass('color_white');
+       // }
+       // else
+       // {
+       // 		$(this).removeClass('color_white');
+       // 		$(this).addClass('color_red');
+       // }
        var url = "/favourites/add";
        $.ajax({
          headers: {
@@ -102,20 +104,72 @@ $(document).ready(function(){
 
 
   $(document).ready(function () {
-  $("#search").on('keyup',function(){
-   var data = $('#search').val();
-   // alert(data);
-   var url="/properties/search";
-   $.ajax({
-    type : "get",
-    url : url,
-    data : {"data":data}
-  });
- });
+ //  $("#search").on('keyup',function(){
+ //   var data = $('#search').val();
+ //   // alert(data);
+ //   var url="/properties/search";
+ //   $.ajax({
+ //    type : "get",
+ //    url : url,
+ //    data : {"data":data}
+ //  });
+ // });
+
+ // Star for Review
+  var prev = 0;
+  var total_rating = 0, total_reviewers = 0;
+  $(".star").on("click", function(){
+
+    console.log("Clicked on a star");
+    var id = $(this).attr('id');
+    alert(id+" "+prev);
+    total_rating += id;
+    total_reviewers++;
+    if(id - 1 > 0)
+    {
+      for(let i=1;i<=id;i++)
+      {
+        $("#"+i).removeClass('uncolored_star');
+        $("#"+i).addClass('colored_star');
+      }
+    }
+
+    if(id < prev)
+    {
+      console.log("Inside the condition")
+      for(let i=id+1;i<=prev;i++)
+      {
+        // console.log("Loooooop111111111");
+        
+        // $("#"+i).removeClass('colored_star');
+        $("#"+i).addClass('uncolored_star');
+      }
+    }
+    prev = id;
+    // $(this).addClass("colored_star");
+
+    let avg = total_rating / total_reviewers;
+
+    $.ajax({
+      headers: {
+           'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+         },
+      type: 'GET',
+      url: 'rating',
+      data: {star : id, avg: avg},
+      dataType : 'script',
+      success: function(data) {
+        // $("#unique").html(data);
+      }
+    })
+
+  })
+
 
   $("#searchButton").on('click',function(){
    var data = $('#searchData').val();
-   // alert(data);
+   alert($("#price").val());
+   console.log($("#price").val())
    var url="/properties/search";
    $.ajax({
     type : "get",
@@ -135,126 +189,61 @@ $(document).ready(function(){
 
   // DataTable
   $('#example').DataTable();
+  $('#example1').DataTable();
+
+
+
+  // Discount First
+
+  // $("#discount").on("click",function(){
+
+  //   let random = Math.floor((Math.random() * 30) + 1);
+  //   alert(random)
+  //   var url="discount";
+  //   $.ajax({
+  //     headers: {
+  //          'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+  //        },
+  //     type : 'GET',
+  //     url : url,
+  //     data : {discount:random},
+  //     dataType : 'script',
+  //     success: function(data) {
+  //       console.log("In success game "+ data);
+  //     }
+  //   });
+  // })
+
+
+  // Discount Second
+
+  $("#discount").on("click",function(){
+
+    let random = Math.floor((Math.random() * 30) + 1);
+    // alert(random);
+    $("#back").css("display","block");
+    $("#discount").html(random);
+    $("#follow").css("display","block");
+    $("#disc").val = random;
+
+    var url="discount";
+     $.ajax({
+      headers: {
+           'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+         },
+      type : 'GET',
+      url : url,
+      data : {discount:random},
+      dataType : 'script',
+      success: function(data) {
+        console.log("In success game "+ data);
+      }
+    });
+  })
+
 
 });
 
 
 
-// Dashboard script
-
-// $(document).ready(function() {
-//       $().ready(function() {
-//         $sidebar = $('.sidebar');
-//         $navbar = $('.navbar');
-//         $main_panel = $('.main-panel');
-
-//         $full_page = $('.full-page');
-
-//         $sidebar_responsive = $('body > .navbar-collapse');
-//         sidebar_mini_active = true;
-//         white_color = false;
-
-//         window_width = $(window).width();
-
-//         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-//         $('.fixed-plugin a').click(function(event) {
-//           if ($(this).hasClass('switch-trigger')) {
-//             if (event.stopPropagation) {
-//               event.stopPropagation();
-//             } else if (window.event) {
-//               window.event.cancelBubble = true;
-//             }
-//           }
-//         });
-
-//         $('.fixed-plugin .background-color span').click(function() {
-//           $(this).siblings().removeClass('active');
-//           $(this).addClass('active');
-
-//           var new_color = $(this).data('color');
-
-//           if ($sidebar.length != 0) {
-//             $sidebar.attr('data', new_color);
-//           }
-
-//           if ($main_panel.length != 0) {
-//             $main_panel.attr('data', new_color);
-//           }
-
-//           if ($full_page.length != 0) {
-//             $full_page.attr('filter-color', new_color);
-//           }
-
-//           if ($sidebar_responsive.length != 0) {
-//             $sidebar_responsive.attr('data', new_color);
-//           }
-//         });
-
-//         $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-//           var $btn = $(this);
-
-//           if (sidebar_mini_active == true) {
-//             $('body').removeClass('sidebar-mini');
-//             sidebar_mini_active = false;
-//             blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-//           } else {
-//             $('body').addClass('sidebar-mini');
-//             sidebar_mini_active = true;
-//             blackDashboard.showSidebarMessage('Sidebar mini activated...');
-//           }
-
-//           // we simulate the window Resize so the charts will get updated in realtime.
-//           var simulateWindowResize = setInterval(function() {
-//             window.dispatchEvent(new Event('resize'));
-//           }, 180);
-
-//           // we stop the simulation of Window Resize after the animations are completed
-//           setTimeout(function() {
-//             clearInterval(simulateWindowResize);
-//           }, 1000);
-//         });
-
-//         $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-//           var $btn = $(this);
-
-//           if (white_color == true) {
-
-//             $('body').addClass('change-background');
-//             setTimeout(function() {
-//               $('body').removeClass('change-background');
-//               $('body').removeClass('white-content');
-//             }, 900);
-//             white_color = false;
-//           } else {
-
-//             $('body').addClass('change-background');
-//             setTimeout(function() {
-//               $('body').removeClass('change-background');
-//               $('body').addClass('white-content');
-//             }, 900);
-
-//             white_color = true;
-//           }
-
-
-//         });
-
-//         $('.light-badge').click(function() {
-//           $('body').addClass('white-content');
-//         });
-
-//         $('.dark-badge').click(function() {
-//           $('body').removeClass('white-content');
-//         });
-//       });
-//     });
-
-
-
-// $(document).on('turbolinks:load', function(){
-   
-// })
 

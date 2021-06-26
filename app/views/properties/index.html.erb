@@ -4,14 +4,53 @@
           <%#= fa_icon "plus" %>
          <%# end %> 
 
-     <%= link_to 'Add', new_property_path, class:'navbar-brand btn btn-outline-primary' %>  
-       
+     <% if current_user.has_role? :host %>    
+        <%= link_to 'Add', new_property_path, class:'navbar-brand btn btn-outline-primary' %>  
+     <% else %>
+        <%= link_to ' ', new_property_path %> 
+     <% end %>
   <form class="form-inline">
   	<div id="container">
   		
   	</div>
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchData">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton">Search</button>
+
+    <%
+      max = getMax
+      min = getMin
+      diff = max - min
+    
+     if diff == 0
+      %>
+         <%= select_tag "Select", options_for_select([ "#{min}" ]) %>
+     <% elsif diff <= 500 %>
+
+        <%= select_tag "Select", options_for_select([ "#{max}" ])   %>       
+      <% else  %>
+       <%# for i in min.to_i..max.to_i %>
+       <%# i = min.to_i
+       while i < max.to_i do %>
+
+          <%#= select_tag "Select", options_for_select([ "#{i} - #{i+1000}" ]) %>
+          <%#= select_tag "Select", options_for_select((min.to_i..max.to_i).map { |i| ["#{i} - #{i + 1000}"] }, id: 'price') do %>
+
+          <%= select_tag "Select", options_for_select((min.to_i..max.to_i).step(1000).to_a.map { |i| ["#{i} - #{i + 1000}", "#{i}", id: 'price']}) do %>
+
+          <%#= select_tag "Select" do 
+             i = min.to_i
+            while i < max.to_i do 
+            options_for_select(["#{i} - #{i + 1000}"] )
+            i = i + 1000 
+            end %>
+
+          <%# i = i + 1000 %>
+       <% end 
+      end  
+    %>
+
+    <%#= select_tag "whatever", options_for_select([ "500", "1000", "2000", "3000" ], "500"), id: 'price' %>
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchButton">Search</button>
   </form>
 </nav>
 

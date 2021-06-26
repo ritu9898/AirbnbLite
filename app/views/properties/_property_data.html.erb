@@ -1,8 +1,9 @@
-<div>
+<div id="properties-container">
   <%# binding.pry %>
+ 
   <% Array(@properties).each do |p| %>
 
-  <div id="container">
+
     <div>
       <div class="card mb-3">
           <div class="container" style="background-color: #d9e0e7;">
@@ -14,8 +15,9 @@
                   <p class="card-text">Cost : <%= p.cost %></p>
                   <p class="card-text">People : <%= p.people %></p>
                   <p class="card-text">Description : <%= p.description %></p>
-                  <p class="card-text">EmailID : <%= p.user&.email %></p>
-                 
+                  <% if current_user.present? %>
+                    <p class="card-text">EmailID : <%= p.user&.email %></p>
+                  <% end %>
                   <p class="card-text"><small class="text-muted">
                     <%#= link_to "Remove from wishlist", favourite_path(fav.property), :method=>"delete"%></small></p>
                 </div>
@@ -60,7 +62,20 @@
              <p><%= link_to "Show", property_path(p) %></p>
           </div>
           <div class="col-sm-3">
-             <p><%= link_to "Edit", edit_property_path(p) %></p>
+            <%# User.where(id: current_user.id).joins(favourites: :property).pluck(:id)%>
+            <% if current_user.present? %>
+              <% if p.user&.id == current_user.id %>
+                <p><%= link_to "Edit", edit_property_path(p) %></p>
+              <% else %>
+                <% if Booking.exists?(user_id: current_user.id, property_id: p.id) %>
+                  <p>  
+                    <%= link_to new_property_review_path(p) do %>
+                      <%= fa_icon "comment" %>
+                    <% end %> 
+                  </p>
+                <% end %>
+             <% end %>
+            <% end %>
           </div>
           
             <div class="col-sm-3">
@@ -83,14 +98,43 @@
             <%# if current_user.has_role? :tenant %>
       
             <%#if !current_user.host? %> <!-- current_user_starts -->
-         
-            <% if Booking.exists?(property_id: p.id, user_id: current_user) %>
-            <%else%>
-            <%# binding.pry %>
-            <%= link_to "Book", new_property_booking_path(p) %>
+            <% if current_user.present? && p.user&.id == current_user.id %>
+            
+            <% else %>
+              <% if current_user.present? %>
+                <% if Booking.exists?(property_id: p.id, user_id: current_user) %>
+              <%else%>
+                <%= link_to "Book", new_property_booking_path(p) %>
+              <% end %> 
+              <% end %>   
             <% end %>
+           
 
           <%# end %> <!-- current_user check ends -->
+          </div>
+
+        </div>
+
+        <div class="row">
+          <%
+          @avg = 0, total = 0
+          arr = Property.joins(:reviews).where(id: p.id).pluck(:rating)
+          if arr.length != 0
+            arr.each do |a| 
+              total = total + a
+            end
+            @avg = total/arr.length
+            
+          end
+          %>
+          <div class="col-md-6">
+            <% for i in 1..5 do %>
+              <% if i == @avg %>
+                <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'uncolored_star' %> </span>
+              <% else %>
+                <span id="<%= i%>" class="star"> <%= fa_icon "star", class: 'colored_star' %> </span>
+              <% end %>
+            <% end %> 
           </div>
         </div>
 
@@ -103,13 +147,10 @@
       
      
     </div>
+    <% end %>
   </div>
 
 
 
-<% end %>
 
-
-</div>
-
-<%= paginate @properties %>
+<%#= paginate @properties %>

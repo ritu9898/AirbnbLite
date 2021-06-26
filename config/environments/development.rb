@@ -12,6 +12,15 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+
+  #Redis-rails
+   config.cache_store = :redis_store, {
+  expires_in: 1.hour,
+  namespace: 'cache',
+  redis: { host: 'localhost', port: 6379, db: 0 },
+  } 
+
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?

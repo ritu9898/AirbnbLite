@@ -1,0 +1,127 @@
+
+<%#= simple_form_for(@review) do |f| %>
+  <%#= f.error_notification %>
+  <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <!-- <div class="form-inputs"> -->
+    <%#= f.input :comment %>
+    <%#= f.association :user %>
+    <%#= f.association :property %>
+  <!-- </div> -->
+
+  <!-- <div class="form-actions"> -->
+    <%#= f.button :submit %>
+  <!-- </div> -->
+<%# end %>
+
+ <%= stylesheet_link_tag "review.css" %>
+
+<!-- New form -->
+<%#* binding.pry %>
+
+<% Array(@reviews).each do |rev| %>
+
+<div class="container">
+
+</div>
+
+<div class="container">
+  <div class="card" style="padding: 1vw;">
+    
+    <div class="row">
+      <div class="col-sm-2">
+       <!-- <span class="user"> <%#= fa_icon "user"%> </span> -->
+       <%= image_tag "profile.png", style: 'height:10vw;width:10vw;' %>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-6">
+            <b><%= current_user.firstname %> <%= current_user.lastname %></b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <p style="color: #989ea0;"><%= rev.created_at.to_date %></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <br />
+    <div class="row">
+      <div class="col-sm-10">
+        <%= rev.comment  %>    
+      </div>
+      <div class="col-sm-2">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <div class="p-2 bd-highlight">
+
+            <%= link_to property_review_path(rev.property&.id, rev.id), method: :delete, class:'navbar-brand' do %>
+              <%= fa_icon "trash" %>
+            <% end %> 
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+<% end %>
+
+
+<%= form_for @review, :url => { :action => "create" }, :html => {"data-parsley-validate" => 'parsley'} do |review|  %>
+
+<div class="container">
+  <div class="card">
+    <div class="container">
+      <div class="row" style="padding: 1vw; margin: 1vw;">
+        <!-- <div class="col-sm-4">
+          <%#= review.label :comment %> 
+        </div> -->
+        <div class="col-sm-6">
+          <%
+            rev = Review.where(user_id: current_user.id, property_id: params[:property_id]).pluck(:comment)
+          %>
+          <% if rev %>
+            <%= review.text_area :comment, placeholder: 'What did you like about it?', :required => true, data:{'parsley-required-message':'Text is required'}, class: "form-control" %>
+              <!--value: "#{rev}"  -->
+          <% else %>  
+            <%= review.text_area :comment, placeholder: 'What did you like about it?', :required => true, data:{'parsley-required-message':'Text is required'}, class: "form-control"%>  
+          <% end %>
+        </div>
+        
+        <div class="col-sm-4">
+          <!-- <span class=”glyphicon glyphicon-star”></span> -->
+          <% for i in 1..5 do %>
+           <span id="<%= i%>" class="star"> <%= fa_icon "star" %> </span>
+          <% end %>
+          <div id="unique">
+          </div>
+          
+           <%= review.hidden_field :rating, id: 'rat', :value => params[:rating]%>
+          
+        </div>
+
+      </div>
+      <div class="row" style="padding: 1vw; margin: 1vw;">
+        <div class="col-sm-6">
+          <button id="Submit" class="btn btn-outline-success">Submit</button>
+          <%#= review.submit %>
+        </div>
+
+        <div class="col-sm-4" id="show_star">
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

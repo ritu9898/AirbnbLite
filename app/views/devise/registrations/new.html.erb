@@ -34,52 +34,7 @@
   </head>
   <body class="u-body">
 
-    <!-- Header starts -->
-    <header class="u-clearfix u-header u-header" id="sec-2749">
-      <div class="u-clearfix u-sheet ">
-         <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1">
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">Home</a>
-              </li>
-
-              <li class="u-nav-item">
-                 <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html#carousel_a3bc" data-page-id="294402439" style="padding: 10px 20px;">About</a>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Properties', properties_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-                  
-              </li>
-
-              <%
-                if !user_signed_in?
-              %>
-
-               <li class="u-nav-item">
-                <%= link_to 'Connect', new_user_registration_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-
-              <%
-                else
-              %>
-
-              <li class="u-nav-item">
-                <%= link_to 'MyProfile', airbnb_profile_path, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <li class="u-nav-item">
-                <%= link_to 'Logout', destroy_user_session_path, method: :delete, class:"u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" %>
-              </li>
-
-              <% end %>
-
-            </ul>
-          </div>
-          </div>
-    </header>
-    <!-- Header ends -->
+   
 
     <section class="u-align-center u-clearfix u-section-1" id="sec-c0d2">
       <div class="u-clearfix u-sheet u-sheet-1">
@@ -150,10 +105,13 @@
                             <label for="text-baf4" class="u-form-control-hidden u-label"></label>
                                 <div class="row">
                                   <div class="col-md-4">
-                                    <%= f.radio_button :host, 'Host' %>Host 
+                                    <%#= f.radio_button :host, 'Host' %>
+                                    <%= radio_button_tag 'theme','host' %> Host
+                                    <%= radio_button_tag 'theme','tenant' %>Tenant
+
                                   </div>
                                   <div class="col-md-4">
-                                    <%= f.radio_button :host, 'Tenant' %>Tenant
+                                  
                                   </div>
                                 </div>
                           </div>

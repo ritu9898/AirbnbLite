@@ -1,12 +1,12 @@
 class PropertiesController < ApplicationController
 
-before_action :authenticate_user!
+# before_action :authenticate_user!
 
 def index
 	# @properties = Property.order(created_at: :desc).page(params[:page]).per(5)
 	
-	@properties = Property.page params[:page]
-	# @properties = Property.all
+	# @properties = Property.page params[:page]
+	@properties = Property.all
 	# binding.pry
 end
 
@@ -52,7 +52,7 @@ end
 
 def search
 	# binding.pry
-	@properties = Property.where(['name LIKE ?', "%#{params[:data]}%"])
+	@properties = Property.where(['name LIKE ? OR location LIKE ?', "%#{params[:data]}%", "%#{params[:data]}%"])
 	# search_property(params[:data]).page params[:page]
 	# binding.pry
 end

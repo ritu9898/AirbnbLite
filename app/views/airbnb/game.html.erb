@@ -1,0 +1,52 @@
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<button id="discount">Click</button>
+		</div>
+	</div>
+</div>
+
+ 
+
+<div class="container" id="back" style="display: none;">
+	<div class="row">
+		<div class="col-md-6">
+  			<%#= link_to "Back", root_path, class: 'btn btn-outline-primary' %>
+		</div>
+	</div>
+</div>
+
+<hr/> -->
+
+
+<%# binding.pry %>
+<div class="container text-center">
+  <h1 class="">
+   Click to check your 
+
+    <span class="a">d</span><span class="b">i</span><span class="c">s</span><span class="d">c</span><span class="e">o</span><span class="f">u</span><span class="a">n</span><span class="a">t</span> 
+  </h1>
+  <% if current_user.discount == nil %>
+
+  <button class="rainbow rainbow-1" id="discount">Click Me!</button>
+    <%= hidden_field :discount, id: 'disc'%>
+
+    <div class="follow" id="follow" style="display: none;">
+    	<a class="rainbow-4">Congratulations! <%= emojify('\u{1f431}') %>
+    	<a/>
+    </div>	
+     <%# binding.pry %>
+  <% else %>  	
+
+  	<div class="follow" id="follow">
+    	<a class="rainbow-4">You already have your discount.
+    	<a/>
+    </div>
+
+  <% end %>
+</div>
+   
+
+
+    
+

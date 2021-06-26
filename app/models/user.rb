@@ -32,7 +32,7 @@ class User < ApplicationRecord
  has_many :favourites, dependent: :destroy    
 
 
- after_create :create_account
+ # after_create :create_account
 
   # def do_this
   #   @user = User.last
@@ -43,23 +43,30 @@ class User < ApplicationRecord
   #   end    
   # end
 
-  def create_account
-    @user = User.last
-    if @user.host?
-      @user.host = true  
-      @user.add_role :host
-    else
-      @user.host = false
-      @user.add_role :tenant
-    end 
-  end
+  
 
  has_many :bookings, dependent: :destroy
+ has_many :reviews, dependent: :destroy
 
   def unavailable_dates
     bookings.pluck(:startdate, :enddate).map do |range|
       { from: range[0], to: range[1] }
     end
   end
+
+   # instead of deleting, indicate the user requested a delete & timestamp it  
+  def soft_delete  
+    update_attribute(:deleted_at, Time.current)  
+  end  
+  
+  # ensure user account is active  
+  def active_for_authentication?  
+    super && !deleted_at  
+  end  
+  
+  # provide a custom message for a deleted account   
+  def inactive_message   
+    !deleted_at ? super : :deleted_account  
+  end  
 
 end
